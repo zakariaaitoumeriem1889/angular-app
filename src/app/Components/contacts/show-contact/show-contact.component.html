@@ -1,0 +1,42 @@
+<h2>Contact Details</h2>
+<hr/>
+<div *ngIf="contact">
+  <div>
+    <label>
+      <strong>ID :</strong>
+    </label>
+    {{ contact.id }}
+  </div>
+  <div>
+    <label>
+      <strong>First Name :</strong>
+    </label>
+    {{ contact.firstName }}
+  </div>
+  <div>
+    <label>
+      <strong>Last Name :</strong>
+    </label>
+    {{ contact.lastName }}
+  </div>
+  <div>
+    <label>
+      <strong>Birth Date :</strong>
+    </label>
+    {{ contact.birthDay | date: 'dd-MM-yyyy' }}
+  </div>
+  <div>
+    <label>
+      <strong>Email :</strong>
+    </label>
+    {{ contact.email }}
+  </div>
+  <div>
+    <label>
+      <strong>Tel :</strong>
+    </label>
+    {{ contact.tel }}
+  </div>
+</div>
+<br/><br/>
+<input type="button" (click)="list()" class="btn btn-primary" value="Back to Contact List" />

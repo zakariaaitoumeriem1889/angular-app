@@ -1,0 +1,33 @@
+<div class="container">
+  <input type="button" (click)="create()" class="btn btn-primary" value="Create contact" />
+</div>
+<p></p>
+<div class="card">
+  <div class="card-header bg-primary text-light">
+    <h2>Contact List</h2>
+  </div>
+  <div class="card-body">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>FirstName</th>
+          <th>LastName</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let contact of contacts | async">
+          <td> {{ contact.id }} </td>
+          <td> {{ contact.firstName }} </td>
+          <td> {{ contact.lastName }} </td>
+          <td>
+            <input type="button" (click)="details(contact.id)" class="btn btn-info" value="Details" />
+            <input type="button" (click)="update(contact.id)" class="btn btn-primary" value="Edit" style="margin-left: 5px" />
+            <input type="button" (click)="delete(contact.id)" class="btn btn-danger" value="Delete" style="margin-left: 5px" />
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

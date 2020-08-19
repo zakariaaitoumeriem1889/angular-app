@@ -1,0 +1,60 @@
+<p></p>
+<div class="container">
+  <div class="card">
+    <div class="card-header bg-primary text-light">Recherche de Photos</div>
+    <div class="card-body">
+      <div class="form-group">
+        <label>Mot Clé:</label>
+        <input type="text" [(ngModel)]="motCle">
+        <button class="btn btn-primary" (click)="getImages()">
+          Chercher
+        </button>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="mode=='LIST'">
+    <div class="row">
+      <div *ngFor="let im of images.hits" class="col-md-3 col-xs-12">
+        <div class="card hauteur">
+          <div class="card-header bg-primary">{{im.tags}}</div>
+          <div class="card-body">
+            <p>Size:
+              <strong>{{im.imageWidth}} X {{im.imageHeight}}</strong></p>
+            <img (click)="detailImage(im)" src="{{im.previewURL}}" class="img-thumbnail clickable img">
+            <p>By <strong>{{im.user}}</strong></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <ul class="nav nav-pills">
+        <li [ngClass]="{'active':currentPage==(i+1)}" *ngFor="let p of
+pages; let i=index" class="clickable">
+          <a (click)="goToPage(i+1)">{{i+1}}</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div *ngIf="mode=='DETAIL'" class="container">
+  <div class="container padding">
+    <button class="btn btn-primary" (click)="mode='LIST'">Mode
+      Liste</button>
+  </div>
+  <div class="card">
+    <div class="card-header bg-primary text-light">{{currentImage.tags}}</div>
+    <div class="card-body">
+      <p>
+        Size:
+        <strong>
+          {{currentImage.imageWidth}} X {{currentImage.imageHeight}}
+        </strong>
+        , By {{currentImage.user}}
+      </p>
+      <div>
+        <img src="{{currentImage.userImageURL}}" class="img-circle">
+        <img src="{{currentImage.webformatURL}}" class="img-thumbnail">
+      </div>
+    </div>
+  </div>
+</div>
